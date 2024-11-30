@@ -40,5 +40,5 @@ const excluir = (id) => new Promise((resolve, reject) =>
 );
 
 module.exports = {
-  incluir, excluir
+  incluir, alterar, excluir
 }

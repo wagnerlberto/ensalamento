@@ -1,5 +1,5 @@
 const express = require('express');
-const { incluir, excluir } = require('./db');
+const { incluir, alterar, excluir } = require('./db');
 const app = express();
 
 app.use(express.static('public'));
@@ -23,6 +23,18 @@ app.post('/matutino', async (req, res) => {
 
   await incluir(sala);
   res.send({ sala });
+});
+
+app.put('/matutino', async (req, res) => {
+  const { id, sala } = req.body;
+
+  if(!id || !sala) {
+    res.status(400).send('ID ou sala não informado');
+    return;
+  }
+
+  await alterar(id, sala);
+  res.send({ id, sala });
 });
 
 app.delete('/matutino', async (req, res) => {
